@@ -76,8 +76,6 @@ class HomeCommand extends SubCommand
     {
         if (count($args) === 0) {
             $plotNumber = 1;
-        } elseif (is_numeric($args[0]) || !isset($args[0])) {
-            $plotNumber = isset($args[0]) ? (int)$args[0] : 0;
             $levelName = $sender->getLevelNonNull()->getFolderName();
             $plots = $this->getPlugin()->getPlotsOfPlayer($sender->getName(), $levelName);
             if (count($plots) === 0) {
@@ -100,7 +98,31 @@ class HomeCommand extends SubCommand
             } else {
                 $sender->sendMessage(TextFormat::RED . $this->translateString("home.error"));
             }
-        } elseif (is_string($args[0])) {
+        } elseif (count($args) > 0 && is_numeric($args[0])) {
+            $plotNumber = (int)$args[0];
+            $levelName = $sender->getLevelNonNull()->getFolderName();
+            $plots = $this->getPlugin()->getPlotsOfPlayer($sender->getName(), $levelName);
+            if (count($plots) === 0) {
+                $sender->sendMessage(TextFormat::RED . $this->translateString("home.noplots"));
+                return true;
+            }
+            if (!isset($plots[$plotNumber - 1])) {
+                $sender->sendMessage(TextFormat::RED . $this->translateString("home.notexist", [$plotNumber]));
+                return true;
+            }
+            usort($plots, function (Plot $plot1, Plot $plot2) {
+                if ($plot1->levelName == $plot2->levelName) {
+                    return 0;
+                }
+                return ($plot1->levelName < $plot2->levelName) ? -1 : 1;
+            });
+            $plot = $plots[$plotNumber - 1];
+            if ($this->getPlugin()->teleportPlayerToPlot($sender, $plot)) {
+                $sender->sendMessage($this->translateString("home.success", [$plot->__toString(), $plot->levelName]));
+            } else {
+                $sender->sendMessage(TextFormat::RED . $this->translateString("home.error"));
+            }
+        } elseif (count($args) > 0 && is_string($args[0])) {
             if (count($args) >= 2 && is_numeric($args[1])) {
                 $plotNumber = (int)$args[1];
             } else {
