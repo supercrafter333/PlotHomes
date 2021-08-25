@@ -1,5 +1,5 @@
 [![Discord](https://img.shields.io/badge/chat-on%20discord-7289da.svg)](https://discord.gg/ca6cWPpERp)
-# PlotHomes - V1.0.0   [![](https://poggit.pmmp.io/shield.state/PlotHomes)](https://poggit.pmmp.io/p/theSpawn) [![](https://poggit.pmmp.io/shield.dl.total/PlotHomes)](https://poggit.pmmp.io/p/PlotHomes)
+# PlotHomes - V1.0.1   [![](https://poggit.pmmp.io/shield.state/PlotHomes)](https://poggit.pmmp.io/p/theSpawn) [![](https://poggit.pmmp.io/shield.dl.total/PlotHomes)](https://poggit.pmmp.io/p/PlotHomes)
 
 **With this simple plugin you can teleport you to a plot of a player or to your plots.**
 

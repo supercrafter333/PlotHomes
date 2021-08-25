@@ -76,8 +76,8 @@ class HomeCommand extends SubCommand
     {
         if (count($args) === 0) {
             $plotNumber = 1;
-        } elseif (is_numeric($args[0])) {
-            $plotNumber = (int)$args[0];
+        } elseif (is_numeric($args[0]) || !isset($args[0])) {
+            $plotNumber = $args[0] !== null ? (int)$args[0] : 0;
             $levelName = $sender->getLevelNonNull()->getFolderName();
             $plots = $this->getPlugin()->getPlotsOfPlayer($sender->getName(), $levelName);
             if (count($plots) === 0) {
