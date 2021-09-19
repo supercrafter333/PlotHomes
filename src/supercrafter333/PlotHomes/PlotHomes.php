@@ -15,21 +15,35 @@ class PlotHomes extends PluginBase
     /**
      * @var self
      */
-    protected static $instance;
+    protected static self $instance;
+
+    /**
+     * Retuns ture if the version is a dev-build and false when it is a stable version
+     * @var bool
+     */
+    private bool $isDev = true;
 
     /**
      * On plugin loading. (That's before enabling)
      */
-    public function onLoad()
+    public function onLoad(): void
     {
         self::$instance = $this;
+        ### Dev Warning ###
+        ###################
+        if ($this->isDev) $this->getLogger()->warning("WARNING! You are running a development version of PlotHomes! Please report bugs on: §bhttps://github.com/supercrafter333/PlotHomes/issues");
+        ###################
     }
 
     /**
      * On plugin enabling.
      */
-    public function onEnable()
+    public function onEnable(): void
     {
+        ### Dev Warning ###
+        ###################
+        if ($this->isDev) $this->getLogger()->warning("WARNING! You are running a development version of theSpawn! Please report bugs on: §bhttps://github.com/supercrafter333/theSpawn/issues");
+        ###################
         $myPlotCmds = $this->getServer()->getCommandMap()->getCommand('plot');
         $myPlotCmds->loadSubCommand(new HomeCommand($this));
     }
@@ -37,7 +51,7 @@ class PlotHomes extends PluginBase
     /**
      * On plugin disabling
      */
-    public function onDisable()
+    public function onDisable(): void
     {
         $myPlotCmds = $this->getServer()->getCommandMap()->getCommand('plot');
         $myPlotCmds->unloadSubCommand("home");

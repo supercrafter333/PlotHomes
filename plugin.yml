@@ -1,6 +1,6 @@
 name: PlotHomes
-version: 1.0.1
-api: 3.0.0
+version: 1.0.1-PM4
+api: 4.0.0
 main: supercrafter333\PlotHomes\PlotHomes
 author: supercrafter333
 load: POSTWORLD
