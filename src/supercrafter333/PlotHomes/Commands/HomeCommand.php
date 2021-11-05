@@ -8,6 +8,7 @@ use MyPlot\Plot;
 use MyPlot\subcommand\SubCommand;
 use pocketmine\command\CommandSender;
 use pocketmine\Player;
+use pocketmine\Server;
 use pocketmine\utils\TextFormat;
 use supercrafter333\PlotHomes\PlotHomes;
 
@@ -75,6 +76,7 @@ class HomeCommand extends SubCommand
     public function execute(CommandSender $sender, array $args): bool
     {
         if (count($args) === 0) {
+
             $plotNumber = 1;
             $levelName = $sender->getLevelNonNull()->getFolderName();
             $plots = $this->getPlugin()->getPlotsOfPlayer($sender->getName(), $levelName);
@@ -98,7 +100,9 @@ class HomeCommand extends SubCommand
             } else {
                 $sender->sendMessage(TextFormat::RED . $this->translateString("home.error"));
             }
+
         } elseif (count($args) > 0 && is_numeric($args[0])) {
+
             $plotNumber = (int)$args[0];
             $levelName = $sender->getLevelNonNull()->getFolderName();
             $plots = $this->getPlugin()->getPlotsOfPlayer($sender->getName(), $levelName);
@@ -122,13 +126,18 @@ class HomeCommand extends SubCommand
             } else {
                 $sender->sendMessage(TextFormat::RED . $this->translateString("home.error"));
             }
+
         } elseif (count($args) > 0 && is_string($args[0])) {
+
             if (count($args) >= 2 && is_numeric($args[1])) {
                 $plotNumber = (int)$args[1];
             } else {
                 $plotNumber = 1;
             }
             $name = $args[0];
+            if (($player = Server::getInstance()->getPlayer($name)) instanceof Player) {
+                $name = $player->getName();
+            }
             $levelName = $sender->getLevelNonNull()->getFolderName();
             $plots = $this->getPlugin()->getPlotsOfPlayer($name, $levelName);
             if (count($plots) === 0) {
