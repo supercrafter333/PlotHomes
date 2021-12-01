@@ -8,6 +8,7 @@ use MyPlot\Plot;
 use MyPlot\subcommand\SubCommand;
 use pocketmine\command\CommandSender;
 use pocketmine\player\Player;
+use pocketmine\Server;
 use pocketmine\utils\TextFormat;
 use supercrafter333\PlotHomes\PlotHomes;
 
@@ -134,6 +135,9 @@ class HomeCommand extends SubCommand
                 $plotNumber = 1;
             }
             $name = $args[0];
+            if (($player = Server::getInstance()->getPlayerByPrefix($name)) instanceof Player) {
+                $name = $player->getName();
+            }
             $levelName = $sender->getWorld()->getFolderName();
             $plots = $this->getPlugin()->getPlotsOfPlayer($name, $levelName);
             if (count($plots) === 0) {
