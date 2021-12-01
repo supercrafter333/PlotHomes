@@ -11,6 +11,7 @@ Please leave a star if you like PlotHomes. Have fun!
 ### Features
 - teleport you to a plot of a player
 - teleport you to your plots
+- support for `/p h super 2` (super = supercrafter333 (autocomplete), only when player ist online)
 
 ### Report Bug
 You've found a Bug?
