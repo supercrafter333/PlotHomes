@@ -68,16 +68,16 @@ class HomeCommand extends SubCommand
     }
 
     /**
-     * @param CommandSender $sender
+     * @param CommandSender|Player $sender
      * @param string[] $args
      * @return bool
      */
-    public function execute(CommandSender $sender, array $args): bool
+    public function execute(CommandSender|Player $sender, array $args): bool
     {
         if (count($args) === 0) {
 
             $plotNumber = 1;
-            $levelName = $sender->getLevelNonNull()->getFolderName();
+            $levelName = $sender->getWorld()->getFolderName();
             $plots = $this->getPlugin()->getPlotsOfPlayer($sender->getName(), $levelName);
             if (count($plots) === 0) {
                 $sender->sendMessage(TextFormat::RED . $this->translateString("home.noplots"));
@@ -103,7 +103,7 @@ class HomeCommand extends SubCommand
         } elseif (count($args) > 0 && is_numeric($args[0])) {
 
             $plotNumber = (int)$args[0];
-            $levelName = $sender->getLevelNonNull()->getFolderName();
+            $levelName = $sender->getWorld()->getFolderName();
             $plots = $this->getPlugin()->getPlotsOfPlayer($sender->getName(), $levelName);
             if (count($plots) === 0) {
                 $sender->sendMessage(TextFormat::RED . $this->translateString("home.noplots"));
@@ -134,7 +134,7 @@ class HomeCommand extends SubCommand
                 $plotNumber = 1;
             }
             $name = $args[0];
-            $levelName = $sender->getLevelNonNull()->getFolderName();
+            $levelName = $sender->getWorld()->getFolderName();
             $plots = $this->getPlugin()->getPlotsOfPlayer($name, $levelName);
             if (count($plots) === 0) {
                 $sender->sendMessage(TextFormat::RED . $this->translateString("home.noplots"));

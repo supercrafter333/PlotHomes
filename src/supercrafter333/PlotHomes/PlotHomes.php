@@ -21,7 +21,7 @@ class PlotHomes extends PluginBase
      * Retuns ture if the version is a dev-build and false when it is a stable version
      * @var bool
      */
-    private bool $isDev = true;
+    private bool $isDev = false;
 
     /**
      * On plugin loading. (That's before enabling)
@@ -42,7 +42,7 @@ class PlotHomes extends PluginBase
     {
         ### Dev Warning ###
         ###################
-        if ($this->isDev) $this->getLogger()->warning("WARNING! You are running a development version of theSpawn! Please report bugs on: §bhttps://github.com/supercrafter333/theSpawn/issues");
+        if ($this->isDev) $this->getLogger()->warning("WARNING! You are running a development version of PlotHomes! Please report bugs on: §bhttps://github.com/supercrafter333/PlotHomes/issues");
         ###################
         $myPlotCmds = $this->getServer()->getCommandMap()->getCommand('plot');
         $myPlotCmds->loadSubCommand(new HomeCommand($this));
