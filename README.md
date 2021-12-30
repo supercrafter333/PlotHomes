@@ -27,7 +27,7 @@ You've found a Bug?
 |`/p h <string: name / int: count> [int: count]`|Teleport you to a plot of a player or your plots (`/p h <int: count>` - Teleport you to your plots; `/p h <string: name> [int: count]` - Teleport you to a plot of a player)|
 
 ### License:
-This Plugin is licensed under the [Apache License 2.0](/LICENSE)! Plugin by supercrafter333!
+This plugin is licensed under the [Apache License 2.0](/LICENSE)! Plugin by supercrafter333!
 
 ### Credits
 
